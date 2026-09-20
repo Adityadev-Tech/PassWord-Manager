@@ -21,7 +21,7 @@ public class Project {
         JLabel title = new JLabel("Enter the Master Key");
         title.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
         title.setHorizontalAlignment(JLabel.CENTER);
-        title.setBounds(250, 125, 200, 50);
+        title.setBounds(200, 125, 300, 50);
         frame.add(title);
 
         // master key input -----------------------------------------------
@@ -35,6 +35,31 @@ public class Project {
         frame.add(loginBtn);
 
 
+        final String MASTER_KEY = "scs/11693/25" ;
+
+
+        // status message (error text) ------------------------------------
+        JLabel status = new JLabel("", JLabel.CENTER);
+       
+        status.setBounds(200, 285, 300, 30);
+        frame.add(status);
+
+
+         // login logic ----------------------------------------------------
+    
+         loginBtn.addActionListener(e -> {
+            String entered = new String(keyField.getPassword());
+
+            if (entered.equals(MASTER_KEY)) {
+                 status.setForeground(Color.GREEN);
+                status.setText("login successfull");
+            } else {
+                status.setText("Wrong Master Key");
+                status.setForeground(Color.RED);
+                keyField.setText("");
+            }
+        });
         frame.setVisible(true);
+    
     }
 }
